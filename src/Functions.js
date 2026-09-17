@@ -40,10 +40,20 @@ export default function ajouterApprenant(nom, ville){
         nomComplet:nomC,
         ville:ville,
         resultats:[]})
+    return apprenants
 }
 
-export default function enregistrerResultat(id, jour, propose, termine, ){
+export default function enregistrerResultat(id, jour, propose, termine, challenge){
+    let a = apprenants.find(i=>i.id == id)
+    if(a){
+        if(validerResultat(jour,propose,termine,challenge)){
+            a.resultats.push(jour,propose,termine,)
+        }
+    }
+}
 
+export default function rechercherApprenant(){
+    
 }
 
 console.log(parseInt(5))
