@@ -130,3 +130,12 @@ export function trierParProgression(){
 }
 console.log(trierParProgression())
 console.log(apprenants);
+
+export function afficherTableauDeBord(){
+    console.log(`Nombre Total d'apprenant : ${apprenants.length}`)
+    let progressionSomme = 0;
+    for(let a of apprenants){
+        let cal = calculerProgression(a.id)
+        console.log(`le nom complet : ${}`)
+    }
+}
