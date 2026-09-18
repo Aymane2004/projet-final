@@ -140,6 +140,13 @@ export function trierParProgression() {
 // console.log(trierParProgression())
 // console.log(apprenants);
 
+export function trierParOrdreAlphabetique(){
+    let a= apprenants.sort((a,b) =>{
+        return a.nomComplet - b.nomComplet
+    })
+    return a
+}
+
 export function afficherTableauDeBord() {
     console.log(`Nombre Total d'apprenant : ${apprenants.length}`)
     let progressionSomme = 0;

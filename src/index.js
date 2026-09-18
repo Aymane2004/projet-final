@@ -1,5 +1,5 @@
 import apprenants from './data.js';
-import { ajouterApprenant, afficherApprenants, afficherTableauDeBord, rechercherApprenant, enregistrerResultat, filtrerParNiveau, trierParProgression, calculerProgression } from './Functions.js';
+import { ajouterApprenant, afficherApprenants, afficherTableauDeBord, rechercherApprenant, enregistrerResultat, filtrerParNiveau, trierParProgression, calculerProgression, trierParOrdreAlphabetique } from './Functions.js';
 import PromptSync from 'prompt-sync';
 const prompt = PromptSync();
 
@@ -90,8 +90,20 @@ do {
 
             break;
         case 7:
-            
-
+            let niveau;
+            do{
+                niveau = prompt("le niveau : ");
+            }while(niveau.toLowerCase()!=='solide' || niveau.toLowerCase()!=='en progression' || niveau.toLowerCase()!=='a renforcer')
+            console.log(filtrerParNiveau(niveau))
+            break;
+        case 8:
+            console.log(trierParProgression());
+            break;
+        case 9:
+            console.log(trierParOrdreAlphabetique());
+            break;
+        default:
+            console.log('choix invalid')
     }
 
 
