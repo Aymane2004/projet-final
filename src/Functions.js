@@ -120,8 +120,8 @@ export function filtrerParNiveau(niveau) {
 console.log(filtrerParNiveau('solide'))
 
 
-export function trierParProgression(){
-    let a = apprenants.sort( (a,b) => {
+export function trierParProgression() {
+    let a = apprenants.sort((a, b) => {
         let x = calculerProgression(a.id)
         let y = calculerProgression(b.id)
         return x.progression - y.progression
@@ -131,11 +131,52 @@ export function trierParProgression(){
 console.log(trierParProgression())
 console.log(apprenants);
 
-export function afficherTableauDeBord(){
+export function afficherTableauDeBord() {
     console.log(`Nombre Total d'apprenant : ${apprenants.length}`)
     let progressionSomme = 0;
-    for(let a of apprenants){
+    let solide = 0;
+    let enProgression = 0;
+    let aRenforcer = 0;
+    for (let a of apprenants) {
         let cal = calculerProgression(a.id)
-        console.log(`le nom complet : ${}`)
+        if (cal.niveau.toLowerCase() == 'solide') {
+            solide++
+        } else if (cal.niveau.toLowerCase() == 'en progression') {
+            enProgression++
+        } else if (cal.niveau.toLowerCase() == 'a renforcer') {
+            aRenforcer++
+        }
+        let journeeManquants = [];
+        let challengeManquants = [];
+        for (let i = 1; i <= 7; i++) {
+            let existeJ = a.resultats.some(e => e.jour == i)
+            if (!existeJ) {
+                journeeManquants.push(`jour ${i}`)
+            }
+        }
+        for (let res of a.resultats) {
+            if (res.challengeTermine == false) {
+                challengeManquants.push(`jour ${res.jour}`)
+            }
+        }
+
+        progressionSomme += cal.progression
+        console.log('===========Apprenant===========');
+        console.log(`le nom complet : ${a.nomComplet}`);
+        console.log(`le pourcentage : ${cal.progression}`);
+        console.log(`les journees monquants : ${journeeManquants}`);
+        console.log(`les challenges monquants : ${challengeManquants}`);
+        console.log('===============================');
+
     }
+    let progressionM = progressionSomme / apprenants.length
+
+    console.log(`la progression moyen est : ${progressionM.toFixed(2)}`)
+    console.log(`le nombre des profils Solide : ${solide}`)
+    console.log(`le nombre des profils En progression : ${enProgression}`)
+    console.log(`le nombre des profils A renforcer : ${aRenforcer}`)
+
 }
+
+console.log('================================')
+afficherTableauDeBord()
