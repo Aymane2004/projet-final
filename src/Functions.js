@@ -74,7 +74,9 @@ export function calculerProgression(id) {
     let a = rechercherApprenant(id)[0];
     let exercicesT = a.resultats.reduce((a, b) => a + b.exercicesTermines, 0)
     let exercicesP = a.resultats.reduce((a, b) => a + b.totalExercices, 0)
-    let progression = (exercicesT / exercicesP) * 100
+    let progression = 0;
+    if (exercicesP > 0)
+        progression = (exercicesT / exercicesP) * 100
     let challengeT = 0;
     a.resultats.forEach(element => {
         if (element.challengeTermine == true) {
@@ -181,8 +183,8 @@ export function afficherTableauDeBord() {
 // afficherTableauDeBord()
 
 
-export function afficherApprenants(){
-    for(let a of apprenants){
+export function afficherApprenants() {
+    for (let a of apprenants) {
         console.log(`l'identifiant : ${a.id}`)
         console.log(`le nom complet : ${a.nomComplet}`)
         console.log(`la ville : ${a.ville}`)

@@ -3,6 +3,8 @@ import { ajouterApprenant, afficherApprenants, afficherTableauDeBord, rechercher
 import PromptSync from 'prompt-sync';
 const prompt = PromptSync();
 
+let choix;
+
 do {
     console.log('=================================')
     console.log('       SAS PROGRESS CONSOLE    ')
@@ -18,7 +20,7 @@ do {
     console.log('9. Trier les apprenants par ordre alphabétique')
     console.log('0. Quitter')
 
-    let choix = Number(prompt('votre choix :'))
+    choix = Number(prompt('votre choix :'))
 
     switch (choix) {
         case 0:
@@ -42,9 +44,31 @@ do {
             ajouterApprenant(nomC, ville);
             console.log('ajouter avec success!')
             break;
+
         case 4:
+            let id = Number(prompt("Veuiller saisir l'identifiant :"));
+            if (!isNaN(id)) {
+                console.log(rechercherApprenant(id));
+            }else{
+                console.log('doit etre un nombre !!')
+            }
+            
             break;
+
         case 5:
+            let idE = Number(prompt("Veuiller saisir l'identifiant :"));
+            if (isNaN(idE)) {
+                console.log("l'id doit etre un nombre");
+                break;
+            }
+            let jour = Number(prompt("Veuiller saisir le jour: "))
+            if(isNaN(jour) || jour>7 || jour<1){
+                console.log("le jour doit etre un nombre et compris entre 1 et 7 !!")
+                break;
+            }
+            let propose = Number(prompt("Veuiller saisir total des exercices: "))
+            let termine = Number(prompt("Veuiller saisir le nombre des exercices termines: "))
+            enregistrerResultat()
             break
         case 6:
             break
