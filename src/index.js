@@ -68,10 +68,29 @@ do {
             }
             let propose = Number(prompt("Veuiller saisir total des exercices: "))
             let termine = Number(prompt("Veuiller saisir le nombre des exercices termines: "))
-            enregistrerResultat()
+            let challenge = prompt("challenge termines (oui/non): ")
+            let ch;
+                if(challenge.toLowerCase() == 'oui'){
+                    ch = true;
+                }else if(challenge.toLowerCase() == 'non'){
+                    ch = false;
+                }else{
+                    console.log('doit etre oui ou non!!')
+                    break;
+                }
+            console.log(enregistrerResultat(idE,jour,propose,termine,ch))
             break
         case 6:
-            break
+            let nom = prompt("le nom de l'apprenant : ")
+            if(!isNaN(nom)){
+                console.log('doit etre un chaine de caractere !!')
+                break;
+            }
+            console.log(rechercherApprenant(nom))
+
+            break;
+        case 7:
+            
 
     }
 

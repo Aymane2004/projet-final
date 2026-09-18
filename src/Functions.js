@@ -48,10 +48,18 @@ export function ajouterApprenant(nom, ville) {
 export function enregistrerResultat(id, jour, propose, termine, challenge) {
     let a = apprenants.find(i => i.id == id)
     if (a) {
-        if (validerResultat(jour, propose, termine, challenge)) {
+        let existeJ = a.resultats.find(i => i.jour == jour)
+        if (!existeJ && validerResultat(jour, propose, termine, challenge)) {
             a.resultats.push({ jour: jour, totalExercices: propose, exercicesTermines: termine, challengeTermine: challenge })
             return a
+        }else if(existeJ && validerResultat(jour, propose, termine, challenge)){
+            existeJ.totalExercices=propose
+            existeJ.exercicesTermines=termine
+            existeJ.challengeTermine=challenge
+            return a
         }
+    }else{
+        return 'apprenant pas trouver'
     }
 }
 // console.log(enregistrerResultat(3, 4, 20, 15, true))
