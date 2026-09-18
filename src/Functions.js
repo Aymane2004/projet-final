@@ -5,7 +5,6 @@ export function normaliserNom(nom) {
     let x = nom.trim().replaceAll(',', '').replace(/\s+/g, ' ');
     return x
 }
-console.log(normaliserNom('   ayman    taleb  '))
 
 export function validerResultat(jour, propose, termine, challenge) {
     if (isNaN(jour) || jour > 7 || jour < 1) {
@@ -31,7 +30,7 @@ export function validerResultat(jour, propose, termine, challenge) {
     return true;
 
 }
-console.log(validerResultat(5, 20, 21, true))
+// console.log(validerResultat(5, 20, 21, true))
 
 export function ajouterApprenant(nom, ville) {
     let id = apprenants.length + 1;
@@ -44,7 +43,7 @@ export function ajouterApprenant(nom, ville) {
     })
     return apprenants
 }
-console.log(ajouterApprenant('ahmed', 'Casablanca'))
+// console.log(ajouterApprenant('ahmed', 'Casablanca'))
 
 export function enregistrerResultat(id, jour, propose, termine, challenge) {
     let a = apprenants.find(i => i.id == id)
@@ -55,7 +54,7 @@ export function enregistrerResultat(id, jour, propose, termine, challenge) {
         }
     }
 }
-console.log(enregistrerResultat(3, 4, 20, 15, true))
+// console.log(enregistrerResultat(3, 4, 20, 15, true))
 
 export function rechercherApprenant(profil) {
     let a = []
@@ -69,7 +68,7 @@ export function rechercherApprenant(profil) {
         return a
     }
 }
-console.log(rechercherApprenant(2))
+// console.log(rechercherApprenant(2))
 
 export function calculerProgression(id) {
     let a = rechercherApprenant(id)[0];
@@ -104,7 +103,7 @@ export function calculerProgression(id) {
     }
 }
 
-console.log(calculerProgression(2))
+// console.log(calculerProgression(2))
 
 export function filtrerParNiveau(niveau) {
     let a = apprenants.filter(i => {
@@ -117,7 +116,7 @@ export function filtrerParNiveau(niveau) {
     return a
 }
 
-console.log(filtrerParNiveau('solide'))
+// console.log(filtrerParNiveau('solide'))
 
 
 export function trierParProgression() {
@@ -128,8 +127,8 @@ export function trierParProgression() {
     })
     return a
 }
-console.log(trierParProgression())
-console.log(apprenants);
+// console.log(trierParProgression())
+// console.log(apprenants);
 
 export function afficherTableauDeBord() {
     console.log(`Nombre Total d'apprenant : ${apprenants.length}`)
@@ -178,5 +177,15 @@ export function afficherTableauDeBord() {
 
 }
 
-console.log('================================')
-afficherTableauDeBord()
+// console.log('================================')
+// afficherTableauDeBord()
+
+
+export function afficherApprenants(){
+    for(let a of apprenants){
+        console.log(`l'identifiant : ${a.id}`)
+        console.log(`le nom complet : ${a.nomComplet}`)
+        console.log(`la ville : ${a.ville}`)
+        console.log('=========================')
+    }
+}
