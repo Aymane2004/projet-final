@@ -142,7 +142,7 @@ export function trierParProgression() {
 
 export function trierParOrdreAlphabetique(){
     let a= apprenants.sort((a,b) =>{
-        return a.nomComplet - b.nomComplet
+        return a.nomComplet.localeCompare(b.nomComplet)
     })
     return a
 }
